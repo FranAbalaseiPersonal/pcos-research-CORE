@@ -51,7 +51,7 @@ for result in data.get("results", []):
     abstract = result.get("abstract", "No abstract available")
     
     # Combine title and abstract for filtering
-    combined_text = (title + " " + abstract).lower()
+    combined_text = ((title or "") + " " + (abstract or "")).lower()
 
     # Must explicitly mention PCOS
     if not ("pcos" in combined_text or "polycystic ovary syndrome" in combined_text):
