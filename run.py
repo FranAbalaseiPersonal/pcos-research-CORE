@@ -68,7 +68,12 @@ sheet_name = f"PCOS Research – {end_date}"
 spreadsheet = client.create(sheet_name)
 sheet = spreadsheet.sheet1
 sheet.clear()
-sheet.update([list(articles[0].keys())] + [list(a.values()) for a in articles])
+
+if not articles:
+    print("⚠️ No PCOS-related articles found. Skipping sheet update.")
+else:
+    sheet.update([list(articles[0].keys())] + [list(a.values()) for a in articles])
+    print(f"✅ Sheet updated with {len(articles)} articles.")
 
 # Move to specified Drive folder
 spreadsheet_id = spreadsheet.id
