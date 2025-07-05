@@ -12,7 +12,7 @@ CORE_API_KEY = os.environ["CORE_API_KEY"]
 QUERY = 'PCOS OR "polycystic ovary syndrome"'
 DAYS_BACK = 7
 MAX_RESULTS = 25
-GOOGLE_FOLDER_ID = "YOUR_FOLDER_ID_HERE"  # <-- Replace with your actual folder ID
+GOOGLE_FOLDER_ID = "1FONoocyFTphDdX1C5ccC0_ZvcvzyTphb"  # <-- Replace with your actual folder ID
 
 # === DATE SETUP ===
 end_date = datetime.now().date()
