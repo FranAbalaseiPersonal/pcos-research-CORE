@@ -9,8 +9,13 @@ from googleapiclient.discovery import build
 
 # === CONFIGURATION ===
 CORE_API_KEY = os.environ["CORE_API_KEY"]
-QUERY = 'PCOS OR "polycystic ovary syndrome"'
-DAYS_BACK = 30
+QUERY = '("polycystic ovary syndrome" OR PCOS) AND (' \
+        'metabol OR ferti OR infertil OR ovulat OR lifestyle OR diet OR nutrition OR exercise OR intervention OR treatment OR therapy OR medication OR drug OR supplement OR ' \
+        'hormone OR hormonal OR androgen OR testosterone OR LH OR FSH OR estradiol OR estrogen OR progesterone OR AMH OR SHBG OR cortisol OR DHEA OR insulin OR glucose OR thyroid OR TSH OR prolactin OR ' \
+        'genetic OR gene OR genes OR DNA OR genomics OR SNP OR SNPs OR "single nucleotide polymorphism" OR ' \
+        'physiology OR psychology OR mental OR stress OR mood OR population OR cohort OR prevalence OR epidemiology' \
+        ')'
+DAYS_BACK = 180
 MAX_RESULTS = 25
 GOOGLE_FOLDER_ID = "1FONoocyFTphDdX1C5ccC0_ZvcvzyTphb"  # <-- Replace with your actual folder ID
 
