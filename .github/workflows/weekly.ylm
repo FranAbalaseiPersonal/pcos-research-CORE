@@ -1,1 +1,30 @@
+name: Weekly PCOS Research
+
+on:
+  schedule:
+    - cron: '0 10 * * MON'  # Every Monday at 10:00 UTC
+  workflow_dispatch:
+
+jobs:
+  pcos-weekly:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install requests gspread oauth2client google-api-python-client httplib2
+
+      - name: Run script
+        env:
+          CORE_API_KEY: ${{ secrets.CORE_API_KEY }}
+          GOOGLE_SERVICE_JSON: ${{ secrets.GOOGLE_SERVICE_JSON }}
+        run: python run.py
 
