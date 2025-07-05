@@ -10,7 +10,7 @@ from googleapiclient.discovery import build
 # === CONFIGURATION ===
 CORE_API_KEY = os.environ["CORE_API_KEY"]
 QUERY = 'PCOS OR "polycystic ovary syndrome"'
-DAYS_BACK = 30
+DAYS_BACK = 7
 MAX_RESULTS = 25
 GOOGLE_FOLDER_ID = "YOUR_FOLDER_ID_HERE"  # <-- Replace with your actual folder ID
 
