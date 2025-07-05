@@ -48,19 +48,52 @@ articles = []
 
 for result in data.get("results", []):
     title = result.get("title", "No title")
+    abstract = result.get("abstract", "No abstract available")
+    
+    # Combine title and abstract for filtering
+    combined_text = (title + " " + abstract).lower()
+
+    # Must explicitly mention PCOS
+    if not ("pcos" in combined_text or "polycystic ovary syndrome" in combined_text):
+        continue
+
+    # Must include at least one relevant keyword
+    keywords = [
+        "metabol", "fertil", "infertil", "ovulat", "hormon", "androgen", "testosterone",
+        "lh", "fsh", "estradiol", "progesterone", "estrogen", "amh", "shbg", "cortisol",
+        "dhea", "insulin", "glucose", "thyroid", "tsh", "prolactin", "lifestyle", "diet",
+        "nutrition", "exercise", "intervention", "treatment", "therapy", "medication",
+        "drug", "supplement", "genetic", "gene", "snp", "dna", "genomics", "physiology",
+        "psychology", "mental", "stress", "mood", "cohort", "population", "prevalence", "epidemiology"
+    ]
+
+    if not any(kw in combined_text for kw in keywords):
+        continue
+
+    # If passed all filters, extract and save
     authors_list = result.get("authors", [])
     authors = ", ".join(
         [a.get("name", "") if isinstance(a, dict) else str(a) for a in authors_list]
     ) if authors_list else "Unknown"
+
     doi = result.get("doi")
     url = f"https://doi.org/{doi}" if doi else result.get("url", "No link available")
-    abstract = result.get("abstract", "No abstract available")
+
     articles.append({
         "Title": title,
         "Authors": authors,
         "Link": url,
         "Abstract": abstract
     })
+
+
+    articles.append({
+        "Title": title,
+        "Authors": authors,
+        "Link": url,
+        "Abstract": abstract
+    })
+
 
 # === GOOGLE SHEETS AUTH + WRITE ===
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
